@@ -20,8 +20,8 @@ let player, cursors;
 
 function preload() {
     this.load.spritesheet('hero', 'assets/sprite.png', {
-        frameWidth: 480,
-        frameHeight: 480
+        frameWidth: 488,
+        frameHeight: 488
     });
 }
 
