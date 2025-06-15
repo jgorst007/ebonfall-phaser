@@ -1,0 +1,1 @@
+// Phaser game code would go here with sprite setup and animation
