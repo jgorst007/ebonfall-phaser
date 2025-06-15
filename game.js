@@ -20,8 +20,8 @@ let player, cursors;
 
 function preload() {
     this.load.spritesheet('hero', 'assets/sprite.png', {
-        frameWidth: 337,
-        frameHeight: 337
+        frameWidth: 480,
+        frameHeight: 480
     });
 }
 
@@ -31,7 +31,7 @@ function create() {
     this.anims.create({
         key: 'walk',
         frames: this.anims.generateFrameNumbers('hero', { start: 0, end: 0 }),
-        frameRate: 10,
+        frameRate: 6,
         repeat: -1
     });
 
