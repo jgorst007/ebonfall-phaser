@@ -3,15 +3,11 @@ const config = {
   width: 800,
   height: 600,
   backgroundColor: "#1d1d1d",
-  scene: {
-    preload,
-    create,
-    update
-  },
+  scene: { preload, create, update },
   pixelArt: true
 };
 
-let player, cursors, npc, dialogText;
+let player, guard, cursors, dialog;
 
 const game = new Phaser.Game(config);
 
@@ -21,25 +17,21 @@ function preload() {
 }
 
 function create() {
-  this.add.text(10, 10, "Ebonfall: Revenant Wars", { font: '16px monospace', fill: '#ffffff' });
-
-  player = this.add.sprite(100, 100, 'ashwalker');
-  npc = this.add.sprite(200, 100, 'ember_guard');
-
+  player = this.add.sprite(100, 100, 'ashwalker', 0);
+  guard = this.add.sprite(200, 100, 'ember_guard', 0);
   cursors = this.input.keyboard.createCursorKeys();
-  dialogText = this.add.text(10, 550, '', { font: '16px monospace', fill: '#ffffff' });
-
-  this.physics.add.existing(player);
-  this.physics.add.existing(npc);
+  dialog = this.add.text(10, 550, '', { font: '16px monospace', fill: '#ffffff' });
 }
 
 function update() {
-  player.x += (cursors.right.isDown - cursors.left.isDown) * 2;
-  player.y += (cursors.down.isDown - cursors.up.isDown) * 2;
+  if (cursors.left.isDown) player.x -= 2;
+  else if (cursors.right.isDown) player.x += 2;
+  if (cursors.up.isDown) player.y -= 2;
+  else if (cursors.down.isDown) player.y += 2;
 
-  if (Phaser.Math.Distance.Between(player.x, player.y, npc.x, npc.y) < 40) {
-    dialogText.setText("Ember Guard: Welcome to Ebonfall.");
+  if (Phaser.Math.Distance.Between(player.x, player.y, guard.x, guard.y) < 40) {
+    dialog.setText("Ember Guard: Welcome to Ebonfall.");
   } else {
-    dialogText.setText("");
+    dialog.setText("");
   }
 }
